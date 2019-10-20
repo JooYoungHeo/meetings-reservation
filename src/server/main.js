@@ -1,16 +1,17 @@
 import Koa from 'koa';
-import Router from 'koa-router';
+import {ApolloServer} from 'apollo-server-koa';
+import models from '../models';
+
+import {typeDefs} from './Schema';
+import {resolvers} from './Resolvers';
 
 const app = new Koa();
-const router = new Router();
 const port = 4000;
 
-router.get('/', ctx => {
-    
-});
+const server = new ApolloServer({typeDefs, resolvers, context: {models}});
 
-app.use(router.routes()).use(router.allowedMethods());
+server.applyMiddleware({app});
 
 app.listen(port, () => {
-    console.log(`server start #${port}`);
+    console.log('server start');
 });
