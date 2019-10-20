@@ -14,7 +14,7 @@ module.exports = {
             },
             size: {
                 allowNull: false,
-                type: Sequelize.ENUM('4','6','8')
+                type: Sequelize.TINYINT(2).UNSIGNED
             }
         });
     },

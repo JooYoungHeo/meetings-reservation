@@ -5,15 +5,15 @@ module.exports = {
         return queryInterface.bulkInsert('room', [
             {
                 name: 'sahara',
-                size: '4'
+                size: 4
             },
             {
                 name: 'antarctica',
-                size: '6'
+                size: 6
             },
             {
                 name: 'jupiter',
-                size: '8'
+                size: 8
             }
         ], {});
     },
