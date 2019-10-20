@@ -4,7 +4,10 @@ import {UnprocessableError, BadRequestError} from '../Errors';
 export const resolvers = {
     Query: {
         /* 이번주 예약 내역 조회 */
-        async getReservationsThisWeek (_, {}, {models}) {
+        async getReservationsThisWeek (_, {}, {models}, {cacheControl}) {
+
+            cacheControl.setCacheHint({maxAge: 60});
+
             const [begin, finish] = getThisWeek();
 
             return models.Reservation.findAll({
@@ -27,7 +30,9 @@ export const resolvers = {
             });
         },
         /* 빈 회의실 목록 조회 */
-        async getEmptyRooms (_, {start, end}, {models}) {
+        async getEmptyRooms (_, {start, end}, {models}, {cacheControl}) {
+
+            cacheControl.setCacheHint({maxAge: 60});
 
             if (!validateDate(start) || !validateDate(end)) throw new BadRequestError();
 

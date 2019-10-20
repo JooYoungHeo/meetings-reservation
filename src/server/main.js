@@ -8,7 +8,13 @@ import {resolvers} from './Resolvers';
 const app = new Koa();
 const port = 4000;
 
-const server = new ApolloServer({typeDefs, resolvers, context: {models}});
+const server = new ApolloServer({
+    typeDefs, 
+    resolvers, 
+    context: {models}, 
+    tracing: true, 
+    cacheControl: true
+});
 
 server.applyMiddleware({app});
 
