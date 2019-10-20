@@ -13,5 +13,5 @@ const server = new ApolloServer({typeDefs, resolvers, context: {models}});
 server.applyMiddleware({app});
 
 app.listen(port, () => {
-    console.log('server start');
+    console.log(`graphql server start #${port}`);
 });

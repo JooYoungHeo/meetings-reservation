@@ -1,8 +1,9 @@
-import {getThisWeek} from '../Utils';
-import {UnprocessableError} from '../Errors';
+import {getThisWeek, validateDate} from '../Utils';
+import {UnprocessableError, BadRequestError} from '../Errors';
 
 export const resolvers = {
     Query: {
+        /* 이번주 예약 내역 조회 */
         async getReservationsThisWeek (_, {}, {models}) {
             const [begin, finish] = getThisWeek();
 
@@ -25,7 +26,11 @@ export const resolvers = {
                 include: [{model: models.User, as: 'user'}, {model: models.Room, as: 'room'}]
             });
         },
+        /* 빈 회의실 목록 조회 */
         async getEmptyRooms (_, {start, end}, {models}) {
+
+            if (!validateDate(start) || !validateDate(end)) throw new BadRequestError();
+
             const rooms = await models.Room.findAll();
             const reservations = await models.Reservation.findAll({
                 where: {
@@ -45,7 +50,11 @@ export const resolvers = {
         }
     },
     Mutation: {
+        /* 예약 */
         async reserveRoom (_, {start, end, userId, roomId}, {models}) {
+
+            if (!validateDate(start) || !validateDate(end)) throw new BadRequestError();
+
             const reservation = await models.Reservation.findOne({
                 where: {
                     roomId,
