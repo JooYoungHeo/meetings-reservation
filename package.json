@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "set:db": "./node_modules/.bin/sequelize db:create && ./node_modules/.bin/sequelize db:migrate",
     "dev": "./node_modules/.bin/nodemon --exec babel-node ./src/server/main.js --watch src"
   },
   "dependencies": {
