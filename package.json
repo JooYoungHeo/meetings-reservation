@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "set:db": "./node_modules/.bin/sequelize db:create && ./node_modules/.bin/sequelize db:migrate",
+    "set:db": "./node_modules/.bin/sequelize db:create",
+    "set:table": "./node_modules/.bin/sequelize db:migrate",
+    "set:data": "./node_modules/.bin/sequelize db:seed:all",
+    "set:all": "yarn run set:db && yarn run set:table && yarn run set:data",
     "dev": "./node_modules/.bin/nodemon --exec babel-node ./src/server/main.js --watch src"
   },
   "dependencies": {
