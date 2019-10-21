@@ -8,7 +8,8 @@
     "set:table": "./node_modules/.bin/sequelize db:migrate",
     "set:data": "./node_modules/.bin/sequelize db:seed:all",
     "set:all": "yarn run set:db && yarn run set:table && yarn run set:data",
-    "dev": "./node_modules/.bin/nodemon --exec babel-node ./src/server/main.js --watch src"
+    "dev": "./node_modules/.bin/nodemon --exec babel-node ./src/server/main.js --watch src",
+    "test": "./node_modules/.bin/mocha --require babel-core/register test/*.test.js"
   },
   "dependencies": {
     "apollo-server-koa": "^2.9.6",
