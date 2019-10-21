@@ -42,9 +42,9 @@ export const resolvers = {
                     [models.Sequelize.Op.or]: [
                         {
                             start: {[models.Sequelize.Op.lte]: start},
-                            end: {[models.Sequelize.Op.gte]: start}
+                            end: {[models.Sequelize.Op.gt]: start}
                         }, {
-                            start: {[models.Sequelize.Op.lte]: end},
+                            start: {[models.Sequelize.Op.lt]: end},
                             end: {[models.Sequelize.Op.gte]: end}
                         }
                     ]
@@ -66,9 +66,9 @@ export const resolvers = {
                     [models.Sequelize.Op.or]: [
                         {
                             start: {[models.Sequelize.Op.lte]: start},
-                            end: {[models.Sequelize.Op.gte]: start}
+                            end: {[models.Sequelize.Op.gt]: start}
                         }, {
-                            start: {[models.Sequelize.Op.lte]: end},
+                            start: {[models.Sequelize.Op.lt]: end},
                             end: {[models.Sequelize.Op.gte]: end}
                         }
                     ]
